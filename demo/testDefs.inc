@@ -90,6 +90,10 @@ function snd_pcm_close(pcm: Psnd_pcm_t): cint; cdecl; LIBASOUND__
 procedure printf(fmt: pchar); CDECL_VARARGS__ LIBASOUND__
 procedure debugf(fmt: pchar; vaoc: array of const); CDECL__ LIBASOUND__
 
+{$endif VPROCS  }
+
+{$endif PROCS  }
+
 (********************************************************************************)
 (*                                                                              *)
 (* Convenience function(s) to satisfy the most common reasons a caller would    *)
@@ -99,5 +103,5 @@ procedure debugf(fmt: pchar; vaoc: array of const); CDECL__ LIBASOUND__
 
 function snd_strerror(errnum: cint): PChar; cdecl;
 
-{$endif VPROCS  }
+{$endif PROCS  }
 

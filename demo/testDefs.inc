@@ -1,6 +1,35 @@
 {
-#include <unixtypes>
+#include <unixtype>
 }
+
+{$ifdef CONSTS }
+{$endif CONSTS }
+
+{$ifdef TYPES  }
+
+type
+  { Signed frames quantity }
+  snd_pcm_sframes_t = cint;
+
+  { PCM handle }
+  PPsnd_pcm_t = ^Psnd_pcm_t;
+  Psnd_pcm_t  = Pointer;
+
+  { PCM stream (direction) }
+  snd_pcm_stream_t = cint;
+
+  { PCM sample format }
+  snd_pcm_format_t = cint;
+
+  { PCM access type }
+  snd_pcm_access_t = cint;
+
+  { Unsigned frames quantity }
+  snd_pcm_uframes_t = cuint;
+
+{$endif TYPES  }
+
+{$ifdef PROCS  }
 
 (* Opens a PCM.
 
@@ -49,13 +78,17 @@ Returns
 
 Closes the specified PCM handle and frees all associated resources.
 *)
-function snd_pcm_close(pcm: Psnd_pcm_t): cint; cdecl; LIBASOUND__ name 'snd_pcm_close';
+function snd_pcm_close(pcm: Psnd_pcm_t): cint; cdecl; LIBASOUND__
+
+{$endif PROCS  }
+
+{$ifdef VPROCS }
 
 // Special test for a variable number of parameters, which mandates that the
 // shim interface uses the Pascal calling convention.
 
-function printf(fmt: pchar); CDECL_VARARGS__ LIBASOUND__
-Function debugf(fmt: pchar; vaoc: array of const); CDECL__ LIBASOUND__
+procedure printf(fmt: pchar); CDECL_VARARGS__ LIBASOUND__
+procedure debugf(fmt: pchar; vaoc: array of const); CDECL__ LIBASOUND__
 
 (********************************************************************************)
 (*                                                                              *)
@@ -66,4 +99,5 @@ Function debugf(fmt: pchar; vaoc: array of const); CDECL__ LIBASOUND__
 
 function snd_strerror(errnum: cint): PChar; cdecl;
 
+{$endif VPROCS  }
 

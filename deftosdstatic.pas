@@ -69,9 +69,11 @@ const
 '  HasLoadVarargsRoutine= true;          (* Presence is implementation-defined   *)' + QQ +
 '' +                                                                            QQ +
 'const' +                                                                       QQ +
+'' +                                                                            QQ +
 '  (* The %%LDESC%% libraries are statically linked, always return false.' +    QQ +
 '  *)' +                                                                        QQ +
 '  IsDynamic= false;' +                                                         QQ +
+'' +                                                                            QQ +
 '  (* The %%LDESC%% libraries are statically linked, if the program has started' + QQ +
 '    successfully then they must be in memory.' +                               QQ +
 '  *)' +                                                                        QQ +

@@ -49,14 +49,9 @@
         <UnitName Value="defToSDCommon"/>
       </Unit>
       <Unit>
-        <Filename Value="dynamod.pas"/>
+        <Filename Value="dynamicmodule.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="DynaMod"/>
-      </Unit>
-      <Unit>
-        <Filename Value="dynamod2.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="DynaMod2"/>
+        <UnitName Value="DynamicModule"/>
       </Unit>
     </Units>
   </ProjectOptions>

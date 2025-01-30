@@ -171,7 +171,7 @@ var
 procedure InitLineBreakStyle(iFileName: string);
 
 type
-  TiBlock= array[0..1023] of byte;
+  TiBlock= array[0..383] of byte;       (* I'd prefer this to be at least 1024  *)
   TiFile= file of byte;
 
 var
@@ -188,8 +188,15 @@ begin
   try
     FillByte(iBlock{%H-}, SizeOf(iBlock), 0);
     BlockRead(iFile, iBlock, SizeOf(iBlock));
-    if IOResult <> 0 then
-      exit;                             (* Via finally block                    *)
+    if IOResult <> 0 then begin
+      case DefaultTextLineBreakStyle of
+        tlbsCRLF: lineBreak := #$0d#$0a;
+        tlbsCR:   lineBreak := #$0d
+      otherwise
+        lineBreak := #$0a;
+      end;
+      exit                              (* Via finally block                    *)
+    end;
     for i := 0 to SizeOf(iBlock) - 2 do
       case iBlock[i] of
         $00: exit;                      (* Via finally block                    *)

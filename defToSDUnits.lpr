@@ -20,7 +20,7 @@ uses
   cthreads,
   {$ENDIF}
   Classes, SysUtils, StrUtils, hashlines, defToSDStatic, defToSDDynamic,
-  defToSDCommon, DynaMod, DynaMod2;
+  defToSDCommon, DynamicModule;
 
 (* Above: the DynaMod unit isn't explicitly used in this program, but importing *)
 (* it is useful in that it checks that it is available and compiles cleanly on  *)
@@ -263,6 +263,9 @@ begin
   end;
   if lName = '' then                    (* Fallback to e.g. PythonDefs.inc      *)
     lName := LowerCase(ChangeFileExt(ExtractFileName(iFull), ''));
+  nName := lName;                       (* For example libpython2.7             *)
+  if Pos('lib', nName) = 1 then
+    Delete(nName, 1, 3);                (* Becomes something like python2.7     *)
   lDesc := lName;                       (* For example libpython2.7             *)
   if Pos('lib', lDesc) = 1 then
     Delete(ldesc, 1, 3);

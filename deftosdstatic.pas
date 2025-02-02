@@ -38,7 +38,8 @@ uses
 
 const
   staticTop=
-'// unit THIS LINE NEEDED FOR DECLARATION HINTING TO WORK' +                    QQ +
+'// unit THIS LINE IS NEEDED FOR THE LAZARUS IDE''S DECLARATION HINTING TO WORK.' + QQ +
+'' +                                                                            QQ +
 '(* Return either a static or a dynamic representation of the %%LDESC%% embedding' + QQ +
 '  library (%%LNAME%%.a or similar). In this case it is static.' +              QQ +
 '*)' +                                                                          QQ +
@@ -50,13 +51,27 @@ const
 '(*                                                                              *)' + QQ +
 '(********************************************************************************)' + QQ +
 '' +                                                                            QQ +
-'{$mode objfpc}{$H+}' +                                                         QQ +
-'{$packrecords C}' +                                                            QQ +
-'' +                                                                            QQ +
 '(*' +                                                                          QQ +
 ' * Please refer to %%INAME%% and other accompanying files for' +               QQ +
 ' * licensing and disclaimer information.' +                                    QQ +
 ' *)' +                                                                         QQ +
+'' +                                                                            QQ +
+'{$mode ObjFPC }{$longstrings on }' +                                           QQ +
+'' +                                                                            QQ +
+'{$push }' +                                                                    QQ +
+'{$macro on }' +                                                                QQ +
+'{$define CDECL__:= cdecl; }' +                                                 QQ +
+'{$define CDECL_VARARGS__:= cdecl varargs; }' +                                 QQ +
+'{$define %%MACRO%%:= external ''%%LNAME%%''; }' +                              QQ +
+'{$define _%%MACRO%%:= %%NNAME%% }' +                                           QQ +
+'{$undef DYNAMIC }' +                                                           QQ +
+'' +                                                                            QQ +
+'{$define EARLY  }' +                                                           QQ +
+'{$undef CONSTS  }' +                                                           QQ +
+'{$undef TYPES   }' +                                                           QQ +
+'{$undef PROCS   }' +                                                           QQ +
+'{$undef VPROCS  }' +                                                           QQ +
+'{$i %%INAME%% }' +                                                             QQ +
 '' +                                                                            QQ +
 'interface' +                                                                   QQ +
 '' +                                                                            QQ +
@@ -79,28 +94,25 @@ const
 '  *)' +                                                                        QQ +
 '  ModuleInMemory= true;' +                                                     QQ +
 '' +                                                                            QQ +
-'{$undef DYNAMIC }' +                                                           QQ +
+'{$undef EARLY   }' +                                                           QQ +
 '{$define CONSTS }' +                                                           QQ +
 '{$undef TYPES   }' +                                                           QQ +
 '{$undef PROCS   }' +                                                           QQ +
 '{$undef VPROCS  }' +                                                           QQ +
 '{$i %%INAME%% }' +                                                             QQ +
 '' +                                                                            QQ +
+'{$undef EARLY   }' +                                                           QQ +
 '{$undef CONSTS  }' +                                                           QQ +
 '{$define TYPES  }' +                                                           QQ +
 '{$undef PROCS   }' +                                                           QQ +
 '{$undef VPROCS  }' +                                                           QQ +
 '{$i %%INAME%% }' +                                                             QQ +
 '' +                                                                            QQ +
-'{$push }' +                                                                    QQ +
-'{$macro on }' +                                                                QQ +
+'{$undef EARLY   }' +                                                           QQ +
 '{$undef CONSTS  }' +                                                           QQ +
 '{$undef TYPES   }' +                                                           QQ +
 '{$define PROCS  }' +                                                           QQ +
 '{$define VPROCS }' +                                                           QQ +
-'{$define CDECL__:= cdecl; }' +                                                 QQ +
-'{$define CDECL_VARARGS__:= cdecl varargs; }' +                                 QQ +
-'{$define %%MACRO%%:= external ''%%LNAME%%''; }' +                              QQ +
 '{$i %%INAME%% }' +                                                             QQ +
 '{$pop }' +                                                                     QQ +
 '' +                                                                            QQ +

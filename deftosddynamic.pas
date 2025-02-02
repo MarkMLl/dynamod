@@ -94,13 +94,27 @@ const
 '(*                                                                              *)' + QQ +
 '(********************************************************************************)' + QQ +
 '' +                                                                            QQ +
-'{$mode objfpc}{$H+}' +                                                         QQ +
-'{$packrecords C}' +                                                            QQ +
-'' +                                                                            QQ +
 '(*' +                                                                          QQ +
 ' * Please refer to %%INAME%% and other accompanying files for' +               QQ +
 ' * licensing and disclaimer information.' +                                    QQ +
 ' *)' +                                                                         QQ +
+'' +                                                                            QQ +
+'{$mode ObjFPC }{$longstrings on }' +                                           QQ +
+'' +                                                                            QQ +
+'{$push }' +                                                                    QQ +
+'{$macro on }' +                                                                QQ +
+'{$define CDECL__:= }' +                                                        QQ +
+'{$define CDECL_VARARGS__:= }' +                                                QQ +
+'{$define %%MACRO%%:= }' +                                                      QQ +
+'{$define _%%MACRO%%:= %%NNAME%% }' +                                           QQ +
+'{$define DYNAMIC }' +                                                          QQ +
+'' +                                                                            QQ +
+'{$define EARLY  }' +                                                           QQ +
+'{$undef CONSTS  }' +                                                           QQ +
+'{$undef TYPES   }' +                                                           QQ +
+'{$undef PROCS   }' +                                                           QQ +
+'{$undef VPROCS  }' +                                                           QQ +
+'{$i %%INAME%% }' +                                                             QQ +
 '' +                                                                            QQ +
 'interface' +                                                                   QQ +
 '' +                                                                            QQ +
@@ -112,13 +126,14 @@ const
 '  DefaultEarlyLoad= true;' +                                                   QQ +
 '  HasLoadVarargsRoutine= true;          (* Presence is implementation-defined   *)' + QQ +
 '' +                                                                            QQ +
-'{$define DYNAMIC }' +                                                          QQ +
+'{$undef EARLY   }' +                                                           QQ +
 '{$define CONSTS }' +                                                           QQ +
 '{$undef TYPES   }' +                                                           QQ +
 '{$undef PROCS   }' +                                                           QQ +
 '{$undef VPROCS  }' +                                                           QQ +
 '{$i %%INAME%% }' +                                                             QQ +
 '' +                                                                            QQ +
+'{$undef EARLY   }' +                                                           QQ +
 '{$undef CONSTS  }' +                                                           QQ +
 '{$define TYPES  }' +                                                           QQ +
 '{$undef PROCS   }' +                                                           QQ +
@@ -139,15 +154,11 @@ const
 '    *)' +                                                                      QQ +
 '    constructor Create(const LoadName: string);' +                                   QQ +
 '    procedure LoadVarargsRoutine(loadName: string= ''''; keepGoing: boolean= false);' + QQ +
-'    {$push }' +                                                                QQ +
-'    {$macro on }' +                                                            QQ +
+'    {$undef EARLY  }' +                                                        QQ +
 '    {$undef CONSTS }' +                                                        QQ +
 '    {$undef TYPES  }' +                                                        QQ +
 '    {$define PROCS }' +                                                        QQ +
 '    {$undef VPROCS }' +                                                        QQ +
-'    {$define CDECL__:= }' +                                                    QQ +
-'    {$define CDECL_VARARGS__:= }' +                                            QQ +
-'    {$define %%MACRO%%:= }' +                                                  QQ +
 '    {$i %%INAME%% }' +                                                         QQ +
 '    {$pop }';
 
